@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  admin_dashboard_backend:
+    build:
+      context: ./admin_dashboard/backend
+      dockerfile: Dockerfile
+    container_name: admin_dashboard_backend
+    ports:
+      - "8001:8000"
+    networks:
+      - main_network
+
+  admin_dashboard_frontend:
+    build:
+      context: ./admin_dashboard/frontend
+      dockerfile: Dockerfile
+    container_name: admin_dashboard_frontend
+    ports:
+      - "3001:3000"
+    networks:
+      - main_network
+
+  api_service:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api_service
+    ports:
+      - "8002:8000"
+    networks:
+      - main_network
+
+  main_website_backend:
+    build:
+      context: ./main_website/backend
+      dockerfile: Dockerfile
+    container_name: main_website_backend
+    ports:
+      - "8003:8000"
+    networks:
+      - main_network
+
+  main_website_frontend:
+    build:
+      context: ./main_website/frontend
+      dockerfile: Dockerfile
+    container_name: main_website_frontend
+    ports:
+      - "3002:3000"
+    networks:
+      - main_network
+
+  online_website_backend:
+    build:
+      context: ./online_website/backend
+      dockerfile: Dockerfile
+    container_name: online_website_backend
+    ports:
+      - "8004:8000"
+    networks:
+      - main_network
+
+  online_website_frontend:
+    build:
+      context: ./online_website/frontend
+      dockerfile: Dockerfile
+    container_name: online_website_frontend
+    ports:
+      - "3003:3000"
+    networks:
+      - main_network
+
+networks:
+  main_network:
+    driver: bridge
